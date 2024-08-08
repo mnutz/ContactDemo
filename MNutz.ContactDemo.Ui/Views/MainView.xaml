@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MNutz.ContactDemo.Ui.Views.MainView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:MNutz.ContactDemo.Ui.Views"
+             xmlns:viewModels="clr-namespace:MNutz.ContactDemo.Ui.ViewModels"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="ContactsViewSource" Source="{Binding Contacts }" />
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl
+                VerticalAlignment="Stretch"
+                ItemsSource="{Binding Source={StaticResource ContactsViewSource}}"
+                Margin="10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <views:ContactCardView />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Name="ContactsGrid" Loaded="ContactsGrid_OnLoaded"
+                                     SizeChanged="ContactsGrid_OnSizeChanged" VerticalAlignment="Top" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

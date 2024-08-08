@@ -1,0 +1,5 @@
+﻿{
+  "modules": [
+    { "type": "MNutz.ContactDemo.Ui.AutofacModule, MNutz.ContactDemo.Ui" }
+  ]
+}
